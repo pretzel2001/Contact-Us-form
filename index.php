@@ -1,24 +1,3 @@
-<?php
-if(isset($_POST['submit'])){
-  $fname = $_POST['fname'];
-  $lname = $_POST['lname'];
-  $email = $_POST['email'];
-  $message = $_POST['message'];
-
-  $link = mysqli_connect("localhost","root","","assignment2");
-  if($link===false){
-    die("Could Not Connect".mysqli_connect_error());
-  }
-  $sql= "INSERT INTO form(firstName,lastName,email,mesage) VALUES ('$fname','$lname','$email','$message')";
-  if (mysqli_query($link,$sql)){
-    echo "Records Added Successfully!";
-  }
-  else{
-    echo "Could not execute $sql".mysqli_error($link);
-  }
-mysqli_close($link);
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +12,7 @@ mysqli_close($link);
 
 <body>
   <section>
-    <div class="upper">
-    </div>
+  <a  class="loginbtn" href="login.php"><button type="button" name="login" value="login">Log In</button></a>
     <div class="wrapper" style="background: none;">
       <h1>Contact Us</h1>
       <form action="index.php" method="POST">
@@ -54,7 +32,28 @@ mysqli_close($link);
         </div>
         <div class="btn">
           <button type="submit" name="submit" value="submit">Send</button>
-          <a href="login.php"><button type="button" name="login" value="login">Log In</button></a>
+        </div>
+        <div style="margin-top: 8px;">
+          <?php
+          if (isset($_POST['submit'])) {
+            $fname = $_POST['fname'];
+            $lname = $_POST['lname'];
+            $email = $_POST['email'];
+            $message = $_POST['message'];
+
+            $link = mysqli_connect("localhost", "root", "", "assignment2");
+            if ($link === false) {
+              die("Could Not Connect" . mysqli_connect_error());
+            }
+            $sql = "INSERT INTO form(firstName,lastName,email,mesage) VALUES ('$fname','$lname','$email','$message')";
+            if (mysqli_query($link, $sql)) {
+              echo "Records Added Successfully!";
+            } else {
+              echo "Could not execute $sql" . mysqli_error($link);
+            }
+            mysqli_close($link);
+          }
+          ?>
         </div>
       </form>
     </div>

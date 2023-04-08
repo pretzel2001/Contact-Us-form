@@ -1,28 +1,3 @@
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  $server = "localhost"; 
-  $username = "root";
-  $password = "";
-  $db = "assignment2";
-  $con = mysqli_connect($server, $username, $password, $db);
-  if (!$con) {
-    die("Connection to database failed due to " . mysqli_connect_error());
-  }
-  $userName=$_POST['username'];
-  $Pass=$_POST['password'];
-
-  $sql = "SELECT * FROM `user` where `username` ='$userName' and `password` ='$Pass'"; 
-  $result=$con->query($sql);
-  if($result->num_rows >0){
-      header('Location: contact-us.php');
-  }
-  else{
-    echo "Username or Password is incorrect";
-      header('Location: login.php');
-  }
-  }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <body>
   <section>
     <div class="login">
-      <h2>LOG IN</h2>
+      <h2>LOGIN</h2>
       <form action="#" method="POST">
         <div class="field">
           <input type="text" name="username" placeholder="Username" required>
@@ -47,6 +22,31 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         <div class="btn">
           <button type="submit" name="login" value="login">Log In</button>
+        </div>
+        <div>
+          <?php
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $server = "localhost";
+            $username = "root";
+            $password = "";
+            $db = "assignment2";
+            $con = mysqli_connect($server, $username, $password, $db);
+            if (!$con) {
+              die("Connection to database failed due to " . mysqli_connect_error());
+            }
+            $userName = $_POST['username'];
+            $Pass = $_POST['password'];
+
+            $sql = "SELECT * FROM `user` where `username` ='$userName' and `password` ='$Pass'";
+            $result = $con->query($sql);
+            if ($result->num_rows > 0) {
+              header('Location: contact-us.php');
+            } else {
+              echo "Username or Password is incorrect";
+              header('Location: login.php');
+            }
+          }
+          ?>
         </div>
       </form>
     </div>
