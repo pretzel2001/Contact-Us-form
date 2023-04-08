@@ -28,7 +28,7 @@ mysqli_close($link);
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us</title>
-  <link rel="stylesheet" href="contact-us.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -54,7 +54,7 @@ mysqli_close($link);
         </div>
         <div class="btn">
           <button type="submit" name="submit" value="submit">Send</button>
-          <a href="login.html"><button type="button" name="login" value="login">Log In</button></a>
+          <a href="login.php"><button type="button" name="login" value="login">Log In</button></a>
         </div>
       </form>
     </div>
